@@ -10,7 +10,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ['inter', ...defaultTheme.fontFamily.sans],
             },
         },
     },
@@ -21,5 +21,9 @@ module.exports = {
         },
     },
 
-    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+    plugins: [
+        require('@tailwindcss/ui'),
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography')
+    ],
 };
