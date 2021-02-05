@@ -7,13 +7,16 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
+    @stack('styles')
     @livewireStyles
+    @livewireScripts
+
 </head>
 <body>
 <div class="h-screen flex overflow-hidden bg-gray-50" x-data="{ sidebarOpen: false }"
      @keydown.window.escape="sidebarOpen = false">
     <x-app-layouts.sidebar/>
+
     <!-- Main column -->
     <div class="flex flex-col w-0 flex-1 overflow-hidden">
         <!-- Search header -->
@@ -30,7 +33,6 @@
             </button>
             <div class="flex-1 flex justify-between px-4 sm:px-6 lg:px-8">
                 <div class="flex-1 flex items-center">
-                    <x-jet-application-logo class="h-8 w-auto mr-4"/>
                 {{$header}}
                 <!-- Freely add more content here -->
                 </div>
@@ -40,8 +42,10 @@
             </div>
         </div>
         <main class="flex-1 relative overflow-y-auto focus:outline-none" tabindex="0">
+            <livewire:ui.ig-cta/>
             <div class="hidden lg:block" style="z-index: 100;">
-                <div class="border-b bg-white border-gray-200 px-2 py-4 sm:flex sm:items-center sm:justify-between sm:px-2 lg:px-4">
+                <div
+                    class="border-b bg-white border-gray-200 px-2 py-4 sm:flex sm:items-center sm:justify-between sm:px-2 lg:px-4">
                     <div class="flex-1 flex justify-between px-4 sm:px-6 lg:px-8">
                         <div class="flex-1 flex items-center">
                             {{$header}}
@@ -52,15 +56,19 @@
                     </div>
                 </div>
             </div>
-            <div class="px-4 mt-6 sm:px-6 lg:px-8" style="z-index: 0">
+            <div id="maincontainer" class="px-4 mt-6 sm:px-6 lg:px-8" style="z-index: 0">
                 {{ $slot }}
+                @stack('modals')
             </div>
         </main>
     </div>
 </div>
-@stack('modals')
-@livewireScripts
 @stack('scripts')
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js"></script>
+@yield('scripts')
+<script src="{{asset('js/app.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.9.0/devicon.min.css">
+<x-livewire-alert::scripts/>
 </body>
 </html>

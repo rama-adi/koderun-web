@@ -32,6 +32,9 @@
                <x-jet-application-logo class="px-4 h-8 w-auto"/>
             </div>
             <div class="mt-5 flex-1 h-0 overflow-y-auto">
+
+                <x-new-scratchbook-button :mobile="true"/>
+
                 <nav class="px-2">
                     <div class="space-y-1">
                         <x-menu-item :active="Route::is('dashboard')" href="{{route('dashboard')}}">
@@ -109,9 +112,9 @@
         <div class="h-0 flex-1 flex flex-col overflow-y-auto">
             <!-- User account dropdown -->
             <!-- Navigation -->
+            <x-new-scratchbook-button :mobile="false" />
             <nav class="px-3 mt-6">
                 <div class="space-y-1">
-
                     <x-menu-item :active="Route::is('dashboard')" href="{{route('dashboard')}}">
                         <x-slot name="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
