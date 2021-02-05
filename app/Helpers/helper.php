@@ -1,12 +1,17 @@
 <?php
 
-/**
- * Generate Scratchbook slug
- * @param $title
- * @return string
- */
-function scratch_slug(string $title){
-    $trim = Str::limit($title, 10, '');
-    $random_string = Str::random(10);
-    return Str::slug("{$trim} {$random_string}");
+function generate_slug(string $title){
+    $trimslug = Str::of(Str::slug(Str::limit($title, 10, '')));
+
+    return $trimslug . '-' . Str::of(Str::random(5))->lower();
+}
+
+function scratch_lang(int $id) : array
+{
+    $languages = config('koderun.languages');
+    return $languages[$id];
+}
+
+function scratch_lang_exist(int $id){
+    return key_exists($id, config('koderun.languages'));
 }
