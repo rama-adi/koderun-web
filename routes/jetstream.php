@@ -28,8 +28,8 @@ Route::group(['middleware' => config('jetstream.middleware', ['web']), 'prefix' 
 
         // Teams...
         if (Jetstream::hasTeamFeatures()) {
-            Route::get('/workspace/create', [TeamController::class, 'create'])->name('teams.create');
-            Route::get('/workspace/{team}', [TeamController::class, 'show'])->name('teams.show');
+            Route::get('/workspace/new', [TeamController::class, 'create'])->name('teams.create');
+            Route::get('/workspace/{team}/edit', [TeamController::class, 'show'])->name('teams.show');
             Route::put('/current-workspace', [CurrentTeamController::class, 'update'])->name('current-team.update');
 
             Route::get('/workspace-invitations/{invitation}', [TeamInvitationController::class, 'accept'])

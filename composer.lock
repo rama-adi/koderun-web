@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8dc9278e54cc06264148d8c55705658f",
+    "content-hash": "025328ed3bd7bae802bdcc6ce7eade90",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -114,6 +114,230 @@
                 "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.3"
             },
             "time": "2020-10-30T02:02:47+00:00"
+        },
+        {
+            "name": "bensampo/laravel-enum",
+            "version": "v3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BenSampo/laravel-enum.git",
+                "reference": "a16fa6d9d1646b9fe52c5c91add6bc452c8baa8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/a16fa6d9d1646b9fe52c5c91add6bc452c8baa8d",
+                "reference": "a16fa6d9d1646b9fe52c5c91add6bc452c8baa8d",
+                "shasum": ""
+            },
+            "require": {
+                "hanneskod/classtools": "^1.2",
+                "illuminate/contracts": "^8.0",
+                "illuminate/support": "^8.0",
+                "laminas/laminas-code": "^3.4",
+                "nikic/php-parser": "^4.10",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^2.9",
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^6.0",
+                "phpstan/phpstan": "^0.12.59",
+                "phpunit/phpunit": "^8.5",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "BenSampo\\Enum\\EnumServiceProvider"
+                    ]
+                },
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BenSampo\\Enum\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Sampson",
+                    "homepage": "https://sampo.co.uk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple, extensible and powerful enumeration implementation for Laravel.",
+            "homepage": "https://github.com/bensampo/laravel-enum",
+            "keywords": [
+                "bensampo",
+                "enum",
+                "laravel",
+                "package",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/BenSampo/laravel-enum/issues",
+                "source": "https://github.com/BenSampo/laravel-enum/tree/v3.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/bensampo",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-12-15T10:28:48+00:00"
+        },
+        {
+            "name": "blade-ui-kit/blade-heroicons",
+            "version": "0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blade-ui-kit/blade-heroicons.git",
+                "reference": "b80c667dfe6eb5c69730e11810ca2d5d1654314a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blade-ui-kit/blade-heroicons/zipball/b80c667dfe6eb5c69730e11810ca2d5d1654314a",
+                "reference": "b80c667dfe6eb5c69730e11810ca2d5d1654314a",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^0.5.0",
+                "illuminate/support": "^7.14|^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BladeUI\\Heroicons\\BladeHeroiconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BladeUI\\Heroicons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dries Vints",
+                    "email": "dries@vints.io",
+                    "homepage": "https://driesvints.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A package to easily make use of Heroicons in your Laravel Blade views.",
+            "homepage": "https://github.com/blade-ui-kit/blade-heroicons",
+            "keywords": [
+                "Heroicons",
+                "blade",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/blade-ui-kit/blade-heroicons/issues",
+                "source": "https://github.com/blade-ui-kit/blade-heroicons/tree/0.3.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/driesvints",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-11-23T21:21:12+00:00"
+        },
+        {
+            "name": "blade-ui-kit/blade-icons",
+            "version": "0.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blade-ui-kit/blade-icons.git",
+                "reference": "d6bb74cdf0420900d14c6bc2304e28d0463dd0a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blade-ui-kit/blade-icons/zipball/d6bb74cdf0420900d14c6bc2304e28d0463dd0a9",
+                "reference": "d6bb74cdf0420900d14c6bc2304e28d0463dd0a9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^7.14|^8.0",
+                "illuminate/filesystem": "^7.14|^8.0",
+                "illuminate/support": "^7.14|^8.0",
+                "illuminate/view": "^7.14|^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BladeUI\\Icons\\BladeIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BladeUI\\Icons\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dries Vints",
+                    "email": "dries@vints.io",
+                    "homepage": "https://driesvints.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A package to easily make use of icons in your Laravel Blade views.",
+            "homepage": "https://github.com/blade-ui-kit/blade-icons",
+            "keywords": [
+                "blade",
+                "icons",
+                "laravel",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/blade-ui-kit/blade-icons/issues",
+                "source": "https://github.com/blade-ui-kit/blade-icons"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/driesvints",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-11-05T20:40:53+00:00"
         },
         {
             "name": "brick/math",
@@ -993,6 +1217,119 @@
             "time": "2020-09-30T07:37:11+00:00"
         },
         {
+            "name": "hanneskod/classtools",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hanneskod/classtools.git",
+                "reference": "d365ddac0e602027c0471ea292f4ba2afcb49394"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hanneskod/classtools/zipball/d365ddac0e602027c0471ea292f4ba2afcb49394",
+                "reference": "d365ddac0e602027c0471ea292f4ba2afcb49394",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^4",
+                "php": ">=7.1",
+                "symfony/finder": "^4|^5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "hanneskod\\classtools\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "WTFPL"
+            ],
+            "authors": [
+                {
+                    "name": "Hannes Forsgård",
+                    "email": "hannes.forsgard@fripost.org"
+                }
+            ],
+            "description": "Find, extract and process classes from file system",
+            "homepage": "https://github.com/hanneskod/classtools",
+            "keywords": [
+                "class finder",
+                "code generator",
+                "metaprogramming",
+                "minimizer"
+            ],
+            "support": {
+                "issues": "https://github.com/hanneskod/classtools/issues",
+                "source": "https://github.com/hanneskod/classtools/tree/1.0"
+            },
+            "time": "2020-03-05T20:41:28+00:00"
+        },
+        {
+            "name": "jantinnerezo/livewire-alert",
+            "version": "2.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jantinnerezo/livewire-alert.git",
+                "reference": "817215353d9af7ed97fec7e764f529d9b03b031d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jantinnerezo/livewire-alert/zipball/817215353d9af7ed97fec7e764f529d9b03b031d",
+                "reference": "817215353d9af7ed97fec7e764f529d9b03b031d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.5 || ^6.0 || ^7.0 || ^8.0",
+                "livewire/livewire": "^2.0",
+                "php": "^7.1|^7.2|^7.3|^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jantinnerezo\\LivewireAlert\\LivewireAlertServiceProvider"
+                    ],
+                    "aliases": {
+                        "LivewireAlert": "Jantinnerezo\\LivewireAlert\\LivewireAlertFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jantinnerezo\\LivewireAlert\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jantinn Erezo",
+                    "email": "erezojantinn@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This package provides a simple alert utilities for your livewire components.",
+            "homepage": "https://github.com/jantinnerezo/livewire-alert",
+            "keywords": [
+                "jantinnerezo",
+                "livewire-alert"
+            ],
+            "support": {
+                "issues": "https://github.com/jantinnerezo/livewire-alert/issues",
+                "source": "https://github.com/jantinnerezo/livewire-alert/tree/2.1.4"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/jantinn",
+                    "type": "custom"
+                }
+            ],
+            "time": "2021-01-05T08:18:43+00:00"
+        },
+        {
             "name": "jaybizzle/crawler-detect",
             "version": "v1.2.104",
             "source": {
@@ -1126,6 +1463,206 @@
                 }
             ],
             "time": "2020-06-13T08:05:20+00:00"
+        },
+        {
+            "name": "laminas/laminas-code",
+            "version": "3.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-code.git",
+                "reference": "b549b70c0bb6e935d497f84f750c82653326ac77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-code/zipball/b549b70c0bb6e935d497f84f750c82653326ac77",
+                "reference": "b549b70c0bb6e935d497f84f750c82653326ac77",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-eventmanager": "^3.3",
+                "laminas/laminas-zendframework-bridge": "^1.1",
+                "php": "^7.3 || ~8.0.0"
+            },
+            "conflict": {
+                "phpspec/prophecy": "<1.9.0"
+            },
+            "replace": {
+                "zendframework/zend-code": "^3.4.1"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.10.4",
+                "ext-phar": "*",
+                "laminas/laminas-coding-standard": "^1.0.0",
+                "laminas/laminas-stdlib": "^3.3.0",
+                "phpunit/phpunit": "^9.4.2"
+            },
+            "suggest": {
+                "doctrine/annotations": "Doctrine\\Common\\Annotations >=1.0 for annotation features",
+                "laminas/laminas-stdlib": "Laminas\\Stdlib component"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laminas\\Code\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Extensions to the PHP Reflection API, static code scanning, and code generation",
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "code",
+                "laminas"
+            ],
+            "support": {
+                "chat": "https://laminas.dev/chat",
+                "docs": "https://docs.laminas.dev/laminas-code/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-code/issues",
+                "rss": "https://github.com/laminas/laminas-code/releases.atom",
+                "source": "https://github.com/laminas/laminas-code"
+            },
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2020-11-30T20:16:31+00:00"
+        },
+        {
+            "name": "laminas/laminas-eventmanager",
+            "version": "3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-eventmanager.git",
+                "reference": "1940ccf30e058b2fd66f5a9d696f1b5e0027b082"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-eventmanager/zipball/1940ccf30e058b2fd66f5a9d696f1b5e0027b082",
+                "reference": "1940ccf30e058b2fd66f5a9d696f1b5e0027b082",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-zendframework-bridge": "^1.0",
+                "php": "^7.3 || ^8.0"
+            },
+            "replace": {
+                "zendframework/zend-eventmanager": "^3.2.1"
+            },
+            "require-dev": {
+                "container-interop/container-interop": "^1.1",
+                "laminas/laminas-coding-standard": "~1.0.0",
+                "laminas/laminas-stdlib": "^2.7.3 || ^3.0",
+                "phpbench/phpbench": "^0.17.1",
+                "phpunit/phpunit": "^8.5.8"
+            },
+            "suggest": {
+                "container-interop/container-interop": "^1.1, to use the lazy listeners feature",
+                "laminas/laminas-stdlib": "^2.7.3 || ^3.0, to use the FilterChain feature"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3.x-dev",
+                    "dev-develop": "3.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laminas\\EventManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Trigger and listen to events within a PHP application",
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "event",
+                "eventmanager",
+                "events",
+                "laminas"
+            ],
+            "support": {
+                "chat": "https://laminas.dev/chat",
+                "docs": "https://docs.laminas.dev/laminas-eventmanager/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-eventmanager/issues",
+                "rss": "https://github.com/laminas/laminas-eventmanager/releases.atom",
+                "source": "https://github.com/laminas/laminas-eventmanager"
+            },
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2020-08-25T11:10:44+00:00"
+        },
+        {
+            "name": "laminas/laminas-zendframework-bridge",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
+                "reference": "6ede70583e101030bcace4dcddd648f760ddf642"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/6ede70583e101030bcace4dcddd648f760ddf642",
+                "reference": "6ede70583e101030bcace4dcddd648f760ddf642",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.1 || ^9.3",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "extra": {
+                "laminas": {
+                    "module": "Laminas\\ZendFrameworkBridge"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/autoload.php"
+                ],
+                "psr-4": {
+                    "Laminas\\ZendFrameworkBridge\\": "src//"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Alias legacy ZF class names to Laminas Project equivalents.",
+            "keywords": [
+                "ZendFramework",
+                "autoloading",
+                "laminas",
+                "zf"
+            ],
+            "support": {
+                "forum": "https://discourse.laminas.dev/",
+                "issues": "https://github.com/laminas/laminas-zendframework-bridge/issues",
+                "rss": "https://github.com/laminas/laminas-zendframework-bridge/releases.atom",
+                "source": "https://github.com/laminas/laminas-zendframework-bridge"
+            },
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2020-09-14T14:23:00+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -8034,7 +8571,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0"
+        "php": "^7.4"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
