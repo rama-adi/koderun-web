@@ -41,4 +41,14 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    public function verified()
+    {
+        return (bool)$this->verified;
+    }
+
+    public function scratchbooks()
+    {
+        return $this->hasMany(Scratchbook::class);
+    }
 }
