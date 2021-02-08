@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Support;
+namespace App\Support\Traits;
 
 
 trait HasTemporaryVariables
@@ -17,4 +17,5 @@ trait HasTemporaryVariables
     {
         return $this->tempVar[$var] = $value;
     }
+
 }
