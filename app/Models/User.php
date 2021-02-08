@@ -20,6 +20,11 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function teamCan(string $permission)
+    {
+        return $this->hasTeamPermission($this->currentTeam, $permission);
+    }
+
     protected $relations = ['currentTeam'];
 
     /**

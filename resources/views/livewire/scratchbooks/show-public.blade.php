@@ -44,6 +44,15 @@
             </div>
             <div>
                 <ul class="flex flex-col items-start space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+                    <li class="flex text-sm leading-none text-gray-900">
+                        <button
+                            wire:click="$toggle('showSharebox')"
+                            class="flex items-center px-3 py-2 space-x-2 bg-gray-100 border border-gray-400 rounded-md hover:bg-gray-300 focus:bg-gray-300 focus:outline-none">
+                            <x-heroicon-o-share class="w-4 h-4 text-gray-700"/>
+                            <span class="font-semibold">Bagikan</span>
+                        </button>
+                    </li>
+
                     @can('star', $scratchbook)
                         <li class="flex text-sm leading-none text-gray-900">
                             <button
@@ -56,13 +65,11 @@
                         </li>
                     @endcan
 
-                    <li class="flex text-sm leading-none text-gray-900">
-                        <button
-                            class="flex items-center px-3 py-2 space-x-2 bg-gray-100 border border-gray-400 rounded-md hover:bg-gray-300 focus:bg-gray-300 focus:outline-none">
-                            <x-heroicon-o-duplicate class="w-4 h-4 text-gray-700"/>
-                            <span class="font-semibold">Clone</span>
-                        </button>
-                    </li>
+                    @can('clone', $scratchbook)
+                        <li class="flex text-sm leading-none text-gray-900">
+                            <livewire:ui.clone-button :scratchbook="$scratchbook" />
+                        </li>
+                    @endcan
 
                     @can('update', $scratchbook)
                         <li class="flex text-sm leading-none text-gray-900">
@@ -177,10 +184,73 @@
         }
         @else
         function setAndSend() {
-            @this.call('showInterstitial').then(function (){
-                @this.call('showOutput')
+            @this.
+            call('showInterstitial').then(function () {
+                @this.
+                call('showOutput')
             });
         }
         @endif
     </script>
+
+    <x-jet-confirmation-modal iconColor="blue" wire:model="showSharebox">
+        <x-slot name="icon">
+            <x-heroicon-o-external-link class="h-6 w-6 text-blue-600"/>
+        </x-slot>
+        <x-slot name="title">
+            Bagikan kode!
+        </x-slot>
+
+        <x-slot name="content">
+            <p>Bagikan kode dengan mencopy link dibawah atau klik tombol sosial media!</p>
+            @if($scratchbook->visibility == \App\Enums\ScratchbookVisibility::PRIVATE)
+                @can('update', $scratchbook)
+                    <p class="mt-4 text-sm">Scratchbook belum publik. Selain tim anda, tidak bisa melihat scratchbook
+                        ini. Klik untuk membuat publik!</p>
+                    <x-jet-button wire:click="setVisibility({{\App\Enums\ScratchbookVisibility::PUBLIC}})" class="mt-2">
+                        Buat publik
+                    </x-jet-button>
+                @else
+                    <p class="mt-4 text-sm">Scratchbook belum publik. Selain tim anda, tidak bisa melihat scratchbook
+                        ini. Minta anggota tim anda untuk mempublikkan!</p>
+                @endcan
+            @else
+                <div class="mt-4">
+                    <div>
+                        <label for="share_link" class="block text-sm font-medium text-gray-700">Link</label>
+                        <div
+                            x-data="{ shareText: 'Salin!', shareURL: '{{route('scratchbook.show', ['team' => $team->username, 'slug' => $scratchbook->slug])}}' }"
+                            class="mt-1 flex rounded-md shadow-sm">
+                            <div class="relative flex items-stretch flex-grow focus-within:z-10">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <!-- Heroicon name: solid/users -->
+                                    <x-heroicon-o-link class="h-5 w-5 text-gray-400"/>
+                                </div>
+                                <input type="text" name="share_link" id="share_link"
+                                       class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm border-gray-300"
+                                       x-model="shareURL">
+                            </div>
+                            <button
+                                @click="window.navigator.clipboard.writeText(shareURL); shareText = 'Disalin!'; setTimeout(function() {
+                              shareText = 'Salin!';
+                            }, 2000)"
+                                class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                                <!-- Heroicon name: solid/sort-ascending -->
+                                <x-heroicon-o-clipboard-copy class="h-5 w-5 text-gray-400"/>
+                                <span x-text="shareText">Salin!</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            @endif
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-danger-button wire:click="$toggle('showSharebox')" wire:loading.attr="disabled">
+                Batalkan
+            </x-jet-danger-button>
+
+        </x-slot>
+    </x-jet-confirmation-modal>
 </div>

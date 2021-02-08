@@ -96,8 +96,12 @@ class Create extends Component
                     'language' => $this->language,
                     'visibility' => ScratchbookVisibility::PRIVATE,
                     'creator_id' => Auth::user()->id
-                ]), function () {
-                    return redirect()->route('dashboard');
+                ]), function ($scratchbook) {
+                    session()->flash('successState', 'Pembuatan scratchbook berhasil!');
+                    return redirect()->route('scratchbook.show', [
+                        'team' => Auth::user()->currentTeam->username,
+                        'slug' => $scratchbook->slug
+                    ]);
                 });
             });
 
