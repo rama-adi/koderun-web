@@ -6,6 +6,6 @@ use BenSampo\Enum\Enum;
 
 final class ScratchbookVisibility extends Enum
 {
-    const PUBLIC = 0;
+    const PUBLIC = 1;
     const PRIVATE = 0;
 }
