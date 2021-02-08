@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\TeamPermissions;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -53,7 +54,7 @@ class TeamPolicy
      */
     public function update(User $user, Team $team)
     {
-        return $user->ownsTeam($team);
+        return ($user->ownsTeam($team) || $user->teamCan(TeamPermissions::UPDATE));
     }
 
     /**
@@ -65,7 +66,7 @@ class TeamPolicy
      */
     public function addTeamMember(User $user, Team $team)
     {
-        return $user->ownsTeam($team);
+        return  ($user->ownsTeam($team) || $user->teamCan(TeamPermissions::INVITE_MEMBER));
     }
 
     /**
@@ -77,7 +78,7 @@ class TeamPolicy
      */
     public function updateTeamMember(User $user, Team $team)
     {
-        return $user->ownsTeam($team);
+        return  ($user->ownsTeam($team) || $user->teamCan(TeamPermissions::UPDATE_MEMBER_PERMISSION));
     }
 
     /**
@@ -89,7 +90,7 @@ class TeamPolicy
      */
     public function removeTeamMember(User $user, Team $team)
     {
-        return $user->ownsTeam($team);
+        return  ($user->ownsTeam($team) || $user->teamCan(TeamPermissions::REMOVE_MEMBER));
     }
 
     /**

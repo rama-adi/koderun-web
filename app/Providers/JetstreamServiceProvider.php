@@ -81,13 +81,20 @@ class JetstreamServiceProvider extends ServiceProvider
 
             TeamPermissions::INVITE_MEMBER,
             TeamPermissions::REMOVE_MEMBER,
+            TeamPermissions::UPDATE_MEMBER_PERMISSION,
 
         ])->description('Admin workspace bisa melakukan apapun kecuali menghapus workspace');
 
         Jetstream::role('editor', __('Editor'), [
-            'read',
-            'create',
-            'update',
-        ])->description(__('Editor users have the ability to read, create, and update.'));
+            ScratchbookPermissions::CREATE,
+            ScratchbookPermissions::READ,
+            ScratchbookPermissions::UPDATE,
+            ScratchbookPermissions::CLONE_TO_WORKSPACE,
+            ScratchbookPermissions::FOREIGN_STAR,
+        ])->description(__('Editor tidak dapat mengatur tim dan menghapus scratchbook. selain itu, bisa'));
+
+        Jetstream::role('member', __('Member'), [
+            ScratchbookPermissions::READ,
+        ])->description(__('Member hanya bisa melihat scratchbook'));
     }
 }
