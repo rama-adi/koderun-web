@@ -9,6 +9,8 @@ use App\Actions\Jetstream\DeleteUser;
 use App\Actions\Jetstream\InviteTeamMember;
 use App\Actions\Jetstream\RemoveTeamMember;
 use App\Actions\Jetstream\UpdateTeamName;
+use App\Enums\ScratchbookPermissions;
+use App\Enums\TeamPermissions;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
@@ -69,12 +71,18 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         Jetstream::defaultApiTokenPermissions(['read']);
 
-        Jetstream::role('admin', __('Administrator'), [
-            'create',
-            'read',
-            'update',
-            'delete',
-        ])->description(__('Administrator users can perform any action.'));
+        Jetstream::role('admin', 'Admin workspace', [
+            ScratchbookPermissions::CREATE,
+            ScratchbookPermissions::READ,
+            ScratchbookPermissions::UPDATE,
+            ScratchbookPermissions::DELETE,
+            ScratchbookPermissions::CLONE_TO_WORKSPACE,
+            ScratchbookPermissions::FOREIGN_STAR,
+
+            TeamPermissions::INVITE_MEMBER,
+            TeamPermissions::REMOVE_MEMBER,
+
+        ])->description('Admin workspace bisa melakukan apapun kecuali menghapus workspace');
 
         Jetstream::role('editor', __('Editor'), [
             'read',

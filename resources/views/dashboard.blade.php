@@ -17,7 +17,7 @@
             Selamat datang di koderun!
         </h2>
         <p class="mt-1 mb-10 text-sm font-medium text-indigo-200 uppercase xl:text-base xl:tracking-wider lg:mb-0">
-           Yuk mulai buat scratchbook, dan jalankan kodemu!
+            Yuk mulai buat scratchbook, dan jalankan kodemu!
         </p>
         <div class="flex mb-8 lg:mt-6 lg:mb-0">
             <div class="inline-flex">
@@ -28,155 +28,80 @@
             </div>
         </div>
         <div class="hidden xl:block bottom-0 right-0 mb-0 mr-3 lg:absolute lg:-ml-4">
-            <img src="{{asset('img/dev-gitactivity.svg')}}" class="max-h-xs mb-4 md:max-w-2xl lg:max-w-lg xl:mb-0 xl:max-w-md" alt="cta welcome">
+            <img src="{{asset('img/dev-gitactivity.svg')}}"
+                 class="max-h-xs mb-4 md:max-w-2xl lg:max-w-lg xl:mb-0 xl:max-w-md" alt="cta welcome">
         </div>
     </div>
 
-   <div class="mt-8">
-       <h2 class="text-lg leading-6 font-medium text-gray-900">
-           Scratchbook terbaru
-       </h2>
+    <div class="md:grid md:grid-cols-2 md:gap-6">
+        <div class="mt-8">
+            <h2 class="text-lg leading-6 font-medium text-gray-900">
+                Scratchbook terbaru
+            </h2>
+            <!-- This example requires Tailwind CSS v2.0+ -->
+            <div class="bg-white shadow overflow-hidden sm:rounded-md mt-4">
+                <ul class="divide-y divide-gray-200">
+                    @foreach(\App\Models\Scratchbook::currentTeam()->get() as $scratchbook)
+                        <li>
+                            <a href="{{route('scratchbook.show', ['team' => $scratchbook->team->username, 'slug' => $scratchbook->slug])}}" class="block hover:bg-gray-50">
+                                <div class="flex items-center px-4 py-4 sm:px-6">
+                                    <div class="min-w-0 flex-1 flex items-center">
+                                        <div class="flex-shrink-0">
+                                            <div
+                                                class="h-12 w-12 rounded-full bg-blue-500 text-2xl flex items-center justify-center  text-white">
+                                                <i class="{{ scratch_lang($scratchbook->language)['icon'] }}"></i>
+                                            </div>
+                                        </div>
+                                        <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                                            <div>
+                                                <p class="text-sm font-medium text-indigo-600 truncate">{{$scratchbook->title}}</p>
+                                                <p class="mt-2 flex items-center text-sm text-gray-500">
+                                                    <!-- Heroicon name: mail -->
+                                                    <x-heroicon-o-code
+                                                        class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"/>
+                                                    <span
+                                                        class="truncate">{{scratch_lang($scratchbook->language)['display']}}</span>
+                                                </p>
+                                            </div>
+                                            <div class="hidden md:block">
+                                                <div>
+                                                    <p class="text-sm text-gray-900">
+                                                        Dibuat pada
+                                                        <time
+                                                            datetime="{{$scratchbook->created_at->format('Y-m-d')}}">{{$scratchbook->created_at->format('d-M-Y')}}</time>
+                                                    </p>
+                                                    <p class="mt-2 text-sm text-gray-500">
+                                                        Terakhir diedit
+                                                        <time
+                                                            datetime="{{$scratchbook->updated_at->format('Y-m-d')}}">{{$scratchbook->updated_at->format('d-M-Y')}}</time>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <!-- Heroicon name: chevron-right -->
+                                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                  clip-rule="evenodd"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        <div class="mt-8">
+            <h2 class="text-lg leading-6 font-medium text-gray-900">
+                Scratchbook yang dibintangi
+            </h2>
+            <!--<p class="mt-2 text-gray-400">Yah, tim mu belum menyimpan scratchbook apapun!</p> -->
+            <p class="mt-2 text-gray-400">Fitur ini coming soon!</p>
+        </div>
+    </div>
 
-       <!-- This example requires Tailwind CSS v2.0+ -->
-       <div class="bg-white shadow overflow-hidden sm:rounded-md mt-4">
-           <ul class="divide-y divide-gray-200">
-               <li>
-                   <a href="#" class="block hover:bg-gray-50">
-                       <div class="flex items-center px-4 py-4 sm:px-6">
-                           <div class="min-w-0 flex-1 flex items-center">
-                               <div class="flex-shrink-0">
-                                   <img class="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                               </div>
-                               <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                                   <div>
-                                       <p class="text-sm font-medium text-indigo-600 truncate">Ricardo Cooper</p>
-                                       <p class="mt-2 flex items-center text-sm text-gray-500">
-                                           <!-- Heroicon name: mail -->
-                                           <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                               <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                               <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                           </svg>
-                                           <span class="truncate">ricardo.cooper@example.com</span>
-                                       </p>
-                                   </div>
-                                   <div class="hidden md:block">
-                                       <div>
-                                           <p class="text-sm text-gray-900">
-                                               Applied on
-                                               <time datetime="2020-01-07">January 7, 2020</time>
-                                           </p>
-                                           <p class="mt-2 flex items-center text-sm text-gray-500">
-                                               <!-- Heroicon name: check-circle -->
-                                               <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                               </svg>
-                                           </p>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                           <div>
-                               <!-- Heroicon name: chevron-right -->
-                               <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                   <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                               </svg>
-                           </div>
-                       </div>
-                   </a>
-               </li>
-
-               <li>
-                   <a href="#" class="block hover:bg-gray-50">
-                       <div class="flex items-center px-4 py-4 sm:px-6">
-                           <div class="min-w-0 flex-1 flex items-center">
-                               <div class="flex-shrink-0">
-                                   <img class="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                               </div>
-                               <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                                   <div>
-                                       <p class="text-sm font-medium text-indigo-600 truncate">Kristen Ramos</p>
-                                       <p class="mt-2 flex items-center text-sm text-gray-500">
-                                           <!-- Heroicon name: mail -->
-                                           <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                               <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                               <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                           </svg>
-                                           <span class="truncate">kristen.ramos@example.com</span>
-                                       </p>
-                                   </div>
-                                   <div class="hidden md:block">
-                                       <div>
-                                           <p class="text-sm text-gray-900">
-                                               Applied on
-                                               <time datetime="2020-01-07">January 7, 2020</time>
-                                           </p>
-                                           <p class="mt-2 flex items-center text-sm text-gray-500">
-                                               <!-- Heroicon name: check-circle -->
-                                               <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                               </svg>
-                                               Completed phone screening
-                                           </p>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                           <div>
-                               <!-- Heroicon name: chevron-right -->
-                               <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                   <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                               </svg>
-                           </div>
-                       </div>
-                   </a>
-               </li>
-
-               <li>
-                   <a href="#" class="block hover:bg-gray-50">
-                       <div class="flex items-center px-4 py-4 sm:px-6">
-                           <div class="min-w-0 flex-1 flex items-center">
-                               <div class="flex-shrink-0">
-                                   <img class="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                               </div>
-                               <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                                   <div>
-                                       <p class="text-sm font-medium text-indigo-600 truncate">Ted Fox</p>
-                                       <p class="mt-2 flex items-center text-sm text-gray-500">
-                                           <!-- Heroicon name: mail -->
-                                           <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                               <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                               <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                           </svg>
-                                           <span class="truncate">ted.fox@example.com</span>
-                                       </p>
-                                   </div>
-                                   <div class="hidden md:block">
-                                       <div>
-                                           <p class="text-sm text-gray-900">
-                                               Applied on
-                                               <time datetime="2020-01-07">January 7, 2020</time>
-                                           </p>
-                                           <p class="mt-2 flex items-center text-sm text-gray-500">
-                                               <!-- Heroicon name: check-circle -->
-                                               <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                               </svg>
-                                               Completed phone screening
-                                           </p>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                           <div>
-                               <!-- Heroicon name: chevron-right -->
-                               <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                   <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                               </svg>
-                           </div>
-                       </div>
-                   </a>
-               </li>
-           </ul>
-       </div>
-   </div>
 </x-app-layout>

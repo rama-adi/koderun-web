@@ -7,19 +7,20 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <script src="{{asset('js/app.js')}}"></script>
+    @stack('head')
     @stack('styles')
     @livewireStyles
-    @livewireScripts
+
 
 </head>
 <body>
 <div class="h-screen flex overflow-hidden bg-gray-50" x-data="{ sidebarOpen: false }"
      @keydown.window.escape="sidebarOpen = false">
     <x-app-layouts.sidebar/>
-
     <!-- Main column -->
+
     <div class="flex flex-col w-0 flex-1 overflow-hidden">
-        <!-- Search header -->
         <div class="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:hidden">
             <button x-description="Sidebar toggle, controls the &apos;sidebarOpen&apos; sidebar state."
                     @click.stop="sidebarOpen = true"
@@ -62,10 +63,13 @@
             </div>
         </main>
     </div>
+
 </div>
+@livewireScripts
 @stack('scripts')
 @yield('scripts')
-<script src="{{asset('js/app.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js"
+        data-turbolinks-eval="false" data-turbo-eval="false"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.9.0/devicon.min.css">

@@ -1,5 +1,7 @@
 <x-app-layout>
-
+    @push('head')
+        <meta name="turbo-cache-control" content="no-cache">
+    @endpush
     <x-slot name="header">
         <div class="flex-1 min-w-0">
             <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">

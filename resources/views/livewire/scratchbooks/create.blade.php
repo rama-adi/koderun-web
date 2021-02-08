@@ -60,11 +60,12 @@
                                             <h3 class="text-lg leading-6 font-medium text-gray-900 text-truncate">
                                                 {{$title}}
                                             </h3>
+                                            @error('title') <p class="text-sm text-red-500">{{$message}}</p> @enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="ml-4 mt-4 flex-shrink-0 flex">
-                                    <button wire:click="$toggle('changeNameDialog')" type="button"
+                                    <button onclick="changeName()" type="button"
                                             class="relative inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         <!-- Heroicon name: phone -->
                                         <div class="-ml-1 mr-2 h-5 w-5 text-gray-400">
@@ -89,14 +90,17 @@
                                             </svg>
                                         </div>
                                         <span>
-                                      Save
+                                      Simpan
                                     </span>
                                     </button>
                                 </div>
                             @else
                                 <div class="mt-4 ml-4 w-full">
                                     <label for="scratchbookchangename" class="sr-only">Ganti nama scratchbook</label>
-                                    <input type="text" id="scratchbookchangename" wire:model="tempVar.changeName"
+                                    <input type="text" id="scratchbookchangename"
+                                           x-data=""
+                                           x-on:keydown.enter="@this.call('changeScratchbookName')"
+                                           wire:model="tempVar.changeName"
                                            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                            placeholder="Ketik nama scratchbook baru">
                                 </div>
@@ -128,10 +132,12 @@
                     </div>
                     <div>
                         <div wire:ignore>
-                            <wc-monaco-editor wire:model.defer="code"
-                                id="codeeditor" language="{{ scratch_lang($language)['name'] }}"
+                            <wc-monaco-editor
+                                wire:model.defer="code"
+                                id="codeeditor" language="{{ scratch_lang($language)['monaco'] }}"
                                 style="height: 70vh;"></wc-monaco-editor>
                         </div>
+                        <div class="m-4">@error('code') <p class="text-sm text-red-500">{{$message}}</p> @enderror</div>
                     </div>
                 </div>
             </div>
@@ -149,8 +155,7 @@
                             </div>
                             <div class="ml-4 mt-4 flex-shrink-0 flex">
                                 <button
-                                    x-data=""
-                                    @click="setAndSend()"
+                                    onclick="setAndSend()"
                                     type="button"
                                     class="ml-3 relative inline-flex items-center px-4 py-2 border border-green-300 shadow-sm text-sm font-medium rounded-md text-green-500 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400">
 
@@ -176,14 +181,23 @@
             </div>
         </div>
 
-        <script>
+        <script data-turbo-eval="false">
             // -- Code executor nya di backend yaa jadi gabisa liat hehehee -- //
             window._codeEditorValue = '';
+            window.changeName = function(){
+                @this.set('code', _codeEditorValue);
+                @this.set('changeNameDialog', true);
+            }
 
-            window.addEventListener('eval-output', function (event) {!(event.detail instanceof Object) ? document.getElementById('eval-output').srcdoc = event.detail : ""});
-            window.addEventListener('beforeunload', function (e) {e.preventDefault(); e.returnValue = ''});
-            document.getElementById('codeeditor').editor.onDidChangeModelContent(function () {_codeEditorValue = document.getElementById('codeeditor').value});
-            document.getElementById('codeeditor').editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {setAndSend();})
+            window.addEventListener('eval-output', function (event) {
+                !(event.detail instanceof Object) ? document.getElementById('eval-output').srcdoc = event.detail : ""
+            });
+            document.getElementById('codeeditor').editor.onDidChangeModelContent(function () {
+                _codeEditorValue = document.getElementById('codeeditor').value
+            });
+            document.getElementById('codeeditor').editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function () {
+                setAndSend();
+            })
             document.onkeyup = function (e) {
                 var evt = window.event || e;
                 if (!(document.getElementById('codeeditor').editor.hasTextFocus())) {
@@ -195,14 +209,17 @@
 
             @if(scratch_lang($language)['treatment'] === \App\Enums\ScratchTreatment::OUTPUT)
                 window.setAndSend = function () {
+                @this.
+                set('code', _codeEditorValue);
                 document.getElementById('eval-output').srcdoc = _codeEditorValue;
             }
             @else
                 window.setAndSend = async function () {
                 await @this.
                 set('code', _codeEditorValue);
-                await @this.
-                call('setOutput');
+                @this.call('showInterstitial').then(function (){
+                    @this.call('showOutput')
+                });
             }
             @endif
 

@@ -2,17 +2,26 @@
 
 namespace App\Http\Livewire\Scratchbooks;
 
-use App\Support\HasTemporaryVariables;
+use App\Enums\ScratchbookVisibility;
+use App\Models\Scratchbook;
+use App\Support\Services\PistonEvaluator;
+use App\Support\Traits\HasLivewireAlert;
+use App\Support\Traits\HasTemporaryVariables;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\UnauthorizedException;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class Create extends Component
 {
-    use HasTemporaryVariables;
+    use HasTemporaryVariables, HasLivewireAlert;
 
     // Stores temporary variables
     public array $tempVar = [
-      "lang" => "",
-      "changeName" => "",
+        "lang" => "",
+        "changeName" => "",
     ];
 
     public ?int $language = 1;
@@ -32,28 +41,9 @@ class Create extends Component
     public function selectLanguage()
     {
         if (!filled($this->getTempVar('lang'))) {
-            $this->alert('error', 'Error!', [
-                'position' => 'bottom',
-                'timer' => 3000,
-                'toast' => true,
-                'text' => 'Kamu belum memilih bahasa!',
-                'confirmButtonText' => 'Ok',
-                'cancelButtonText' => 'Batalkan',
-                'showCancelButton' => true,
-                'showConfirmButton' => false,
-            ]);
+            $this->showToast('Belum memilih bahasa!', 'error', 'Gagal melanjutkan wizard!');
         } elseif (!scratch_lang_exist((int)$this->getTempVar('lang'))) {
-            $this->alert('error', 'Error!', [
-                'position' => 'bottom',
-                'timer' => 3000,
-                'toast' => true,
-                'text' => 'Bahasa itu tidak ada!',
-                'confirmButtonText' => 'Ok',
-                'cancelButtonText' => 'Batalkan',
-                'showCancelButton' => true,
-                'showConfirmButton' => false,
-            ]);
-
+            $this->showToast('Bahasa itu tidak ada', 'error', 'Gagal melanjutkan wizard!');
         } else {
             $this->language = (int)$this->getTempVar('lang');
             $this->sbPage = 1;
@@ -62,29 +52,25 @@ class Create extends Component
 
     public function cancelRename()
     {
-        $this->setTempVar('changeName', '');
         $this->changeNameDialog = false;
+        $this->setTempVar('changeName', '');
+    }
+    public function showInterstitial()
+    {
+        $this->dispatchBrowserEvent('eval-output', view('standalone.interstitial')->render());
     }
 
-    public function setOutput()
+    public function showOutput()
     {
-        $this->dispatchBrowserEvent('eval-output', $this->code == [] ? '' : $this->code);
+        $eval = new PistonEvaluator($this->language, $this->code);
+        $this->dispatchBrowserEvent('eval-output', $this->code == [] ? '' : $eval->executeCode());
     }
 
     public function changeScratchbookName()
     {
-        if(!filled($this->getTempVar('changeName'))){
-            $this->alert('error', 'Error!', [
-                'position' => 'bottom',
-                'timer' => 3000,
-                'toast' => true,
-                'text' => 'Input nama kosong!',
-                'confirmButtonText' => 'Ok',
-                'cancelButtonText' => 'Batalkan',
-                'showCancelButton' => true,
-                'showConfirmButton' => false,
-            ]);
-        }else{
+        if (!filled($this->getTempVar('changeName'))) {
+            $this->showToast('Input nama kosong!', 'error', 'Gagal mengganti nama!');
+        } else {
             $this->title = $this->getTempVar('changeName');
             $this->setTempVar('changeName', '');
             $this->changeNameDialog = false;
@@ -93,7 +79,32 @@ class Create extends Component
 
     public function saveScratchbook()
     {
-        dd($this->code);
+        $perms = Gate::inspect('create', Scratchbook::class);
+        if ($perms->allowed()) {
+
+            $this->validate([
+                'code' => 'required|min:1',
+                'title' => 'required|max:255'
+            ]);
+
+            DB::transaction(function () {
+                return tap(Scratchbook::create([
+                    'team_id' => Auth::user()->currentTeam->id,
+                    'title' => $this->title,
+                    'slug' => generate_slug($this->title),
+                    'code' => $this->code,
+                    'language' => $this->language,
+                    'visibility' => ScratchbookVisibility::PRIVATE,
+                    'creator_id' => Auth::user()->id
+                ]), function () {
+                    return redirect()->route('dashboard');
+                });
+            });
+
+
+        } else {
+            $this->showToast($perms->message(), 'error', 'Gagal menyimpan!');
+        }
     }
 
 }

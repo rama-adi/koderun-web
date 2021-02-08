@@ -106,7 +106,7 @@
                         <wc-monaco-editor
                             id="codeeditor"
                             src="{{route('scratchbook.show_raw', ['team' => $team->username, 'slug' => $scratchbook->slug])}}"
-                            language="{{ scratch_lang($scratchbook->language)['name'] }}"
+                            language="{{ scratch_lang($scratchbook->language)['monaco'] }}"
                             style="height: 70vh;"></wc-monaco-editor>
                     </div>
                 </div>
@@ -177,8 +177,9 @@
         }
         @else
         function setAndSend() {
-            @this.
-            call('setOutput');
+            @this.call('showInterstitial').then(function (){
+                @this.call('showOutput')
+            });
         }
         @endif
     </script>

@@ -46,7 +46,7 @@ class ScratchbookPolicy
      */
     public function create(User $user)
     {
-        //
+        return Response::allow('Tidak memiliki akses untuk itu!');
     }
 
     /**
