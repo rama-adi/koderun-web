@@ -4,6 +4,7 @@ namespace App\Actions\Jetstream;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Laravel\Jetstream\Contracts\CreatesTeams;
 use Laravel\Jetstream\Events\AddingTeam;
 use Laravel\Jetstream\Jetstream;
@@ -19,9 +20,11 @@ class CreateTeam implements CreatesTeams
      */
     public function create($user, array $input)
     {
+
         Gate::forUser($user)->authorize('create', Jetstream::newTeamModel());
 
         Validator::make($input, [
+            'username' => ['required', Rule::unique('teams', 'username')],
             'name' => ['required', 'string', 'max:255'],
         ])->validateWithBag('createTeam');
 
@@ -29,6 +32,8 @@ class CreateTeam implements CreatesTeams
 
         $user->switchTeam($team = $user->ownedTeams()->create([
             'name' => $input['name'],
+            'username' => $input['username'],
+            'verified' => false,
             'personal_team' => false,
         ]));
 
