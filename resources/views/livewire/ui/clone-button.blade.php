@@ -27,7 +27,7 @@
             <x-jet-button wire:click="cloneScratchbook" wire:loading.attr="disabled">
                 Clone!
             </x-jet-button>
-            <x-jet-danger-button wire:click="$toggle('showSharebox')" wire:loading.attr="disabled">
+            <x-jet-danger-button wire:click="$toggle('showCloneDialog')" wire:loading.attr="disabled">
                 Batalkan
             </x-jet-danger-button>
 
