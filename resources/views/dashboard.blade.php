@@ -41,7 +41,7 @@
             <!-- This example requires Tailwind CSS v2.0+ -->
             <div class="bg-white shadow overflow-hidden sm:rounded-md mt-4">
                 <ul class="divide-y divide-gray-200">
-                    @foreach(\App\Models\Scratchbook::currentTeam()->get() as $scratchbook)
+                    @foreach(\App\Models\Scratchbook::currentTeam()->orderBy('created_at','desc')->limit(5)->get() as $scratchbook)
                         <li>
                             <a href="{{route('scratchbook.show', ['team' => $scratchbook->team->username, 'slug' => $scratchbook->slug])}}" class="block hover:bg-gray-50">
                                 <div class="flex items-center px-4 py-4 sm:px-6">
