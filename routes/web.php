@@ -27,6 +27,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
 
         Route::prefix('scratchbooks')->group(function (){
             Route::get('new', [ScratchbookController::class, 'create'])->name('scratchbook.create');
+            Route::get('{scratchbook}/edit', [ScratchbookController::class, 'edit'])->name('scratchbook.edit');
+            Route::get('{scratchbook}/raw', [ScratchbookController::class, 'raw'])->name('scratchbook.raw');
+
         });
 
     });

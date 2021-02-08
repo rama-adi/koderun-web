@@ -44,7 +44,7 @@ class ShowPublic extends Component
                 return tap($this->scratchbook->update([
                     'visibility' => $visibility
                 ]), function () {
-                    $this->showToast('Berhasil mempublikkan', 'success', 'Sukses!');
+                    $this->showToast('Berhasil mempublikkan', 'success', 'Sukses!', ['cancelButtonText' => 'Okay!']);
                 });
             });
 

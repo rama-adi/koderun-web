@@ -13,7 +13,7 @@
     </x-slot>
     @if (session('successState'))
         <div class="alert alert-success">
-            <div class="bg-green-50-50 border-l-4 border-green-400 p-4">
+            <div class="bg-green-50 border-l-4 border-green-400 p-4">
                 <div class="flex">
                     <div class="flex-shrink-0">
                         <!-- Heroicon name: solid/exclamation -->
@@ -28,6 +28,7 @@
             </div>
         </div>
     @endif
+
 
     <livewire:scratchbooks.show-public :scratchbook="$scratchbook" :team="$team"/>
     @push('scripts')

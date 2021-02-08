@@ -73,11 +73,12 @@
 
                     @can('update', $scratchbook)
                         <li class="flex text-sm leading-none text-gray-900">
-                            <button
+                            <a
+                                href="{{route('scratchbook.edit', ['scratchbook' => $scratchbook->id])}}"
                                 class="flex items-center px-3 py-2 space-x-2 bg-gray-100 border border-gray-400 rounded-md hover:bg-gray-300 focus:bg-gray-300 focus:outline-none">
                                 <x-heroicon-o-pencil class="w-4 h-4 text-gray-700"/>
                                 <span class="font-semibold">Edit</span>
-                            </button>
+                            </a>
                         </li>
                     @endcan
                 </ul>
@@ -110,9 +111,9 @@
                 </div>
                 <div>
                     <div wire:ignore>
+                        <textarea id="initialCode" style="display: none;">{!! $scratchbook->code !!}</textarea>
                         <wc-monaco-editor
                             id="codeeditor"
-                            src="{{route('scratchbook.show_raw', ['team' => $team->username, 'slug' => $scratchbook->slug])}}"
                             language="{{ scratch_lang($scratchbook->language)['monaco'] }}"
                             style="height: 70vh;"></wc-monaco-editor>
                     </div>
@@ -162,6 +163,7 @@
 
     <script>
         window.onload = function () {
+            document.getElementById('codeeditor').value = document.getElementById('initialCode').value;
             window.addEventListener('eval-output', function (event) {
                 !(event.detail instanceof Object) ? document.getElementById('eval-output').srcdoc = event.detail : ""
             });
@@ -226,7 +228,7 @@
                                     <!-- Heroicon name: solid/users -->
                                     <x-heroicon-o-link class="h-5 w-5 text-gray-400"/>
                                 </div>
-                                <input type="text" name="share_link" id="share_link"
+                                <input onclick="this.select()" type="text" name="share_link" id="share_link"
                                        class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm border-gray-300"
                                        x-model="shareURL">
                             </div>
