@@ -18,7 +18,7 @@ Route::group(['middleware' => config('jetstream.middleware', ['web']), 'prefix' 
 
     Route::group(['middleware' => ['auth', 'verified']], function () {
         // User & Profile...
-        Route::get('/user/profile', [UserProfileController::class, 'show'])
+        Route::get('/user/setting', [UserProfileController::class, 'show'])
                     ->name('profile.show');
 
         // API...

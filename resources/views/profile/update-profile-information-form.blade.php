@@ -48,7 +48,6 @@
             <x-jet-label for="name" value="Nama"/>
             <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name"
                          autocomplete="name"/>
-            <small class="text-red-500">Perhatian: anda dilarang menirukan nama dari admin tim SainsIn education</small>
             <x-jet-input-error for="name" class="mt-2"/>
         </div>
 
