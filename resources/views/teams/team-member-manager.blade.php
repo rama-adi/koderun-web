@@ -15,7 +15,7 @@
                 <x-slot name="form">
                     <div class="col-span-6">
                         <div class="max-w-xl text-sm text-gray-600">
-                            Harap berikan alamat email orang yang ingin Anda tambahkan ke tim ini. Alamat email harus
+                            Harap berikan alamat email orang yang ingin Anda tambahkan ke workspace ini. Alamat email harus
                             dikaitkan dengan akun yang ada.
                         </div>
                     </div>
@@ -88,11 +88,11 @@
         <div class="mt-10 sm:mt-0">
             <x-jet-action-section>
                 <x-slot name="title">
-                    Anggota tim
+                    Anggota workspace
                 </x-slot>
 
                 <x-slot name="description">
-                    Semua orang yang menjadi bagian dari tim ini.
+                    Semua orang yang menjadi bagian dari workspace ini.
                 </x-slot>
 
                 <!-- Team Member List -->
@@ -129,7 +129,7 @@
                                     @elseif (Gate::check('removeTeamMember', $team))
                                         <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
                                                 wire:click="confirmTeamMemberRemoval('{{ $user->id }}')">
-                                            Remove
+                                            Hapus
                                         </button>
                                     @endif
                                 </div>
@@ -144,7 +144,7 @@
 <!-- Role Management Modal -->
     <x-jet-dialog-modal wire:model="currentlyManagingRole">
         <x-slot name="title">
-            Manage Role
+           Manajer role
         </x-slot>
 
         <x-slot name="content">
@@ -181,11 +181,11 @@
 
         <x-slot name="footer">
             <x-jet-secondary-button wire:click="stopManagingRole" wire:loading.attr="disabled">
-                Nevermind
+                Gak jadi
             </x-jet-secondary-button>
 
             <x-jet-button class="ml-2" wire:click="updateRole" wire:loading.attr="disabled">
-                Save
+                Simpan
             </x-jet-button>
         </x-slot>
     </x-jet-dialog-modal>
@@ -193,20 +193,20 @@
     <!-- Leave Team Confirmation Modal -->
     <x-jet-confirmation-modal wire:model="confirmingLeavingTeam">
         <x-slot name="title">
-            Leave Team
+            Keluar dari workspace
         </x-slot>
 
         <x-slot name="content">
-            Are you sure you would like to leave this team?
+            Yakin ingin meninggalkan workspace ini?
         </x-slot>
 
         <x-slot name="footer">
             <x-jet-secondary-button wire:click="$toggle('confirmingLeavingTeam')" wire:loading.attr="disabled">
-                Nevermind
+                Ga jadi
             </x-jet-secondary-button>
 
             <x-jet-danger-button class="ml-2" wire:click="leaveTeam" wire:loading.attr="disabled">
-                Leave
+                Yakin
             </x-jet-danger-button>
         </x-slot>
     </x-jet-confirmation-modal>
@@ -214,20 +214,20 @@
     <!-- Remove Team Member Confirmation Modal -->
     <x-jet-confirmation-modal wire:model="confirmingTeamMemberRemoval">
         <x-slot name="title">
-            Remove Team Member
+            Hapus member workspace
         </x-slot>
 
         <x-slot name="content">
-            Are you sure you would like to remove this person from the team?
+            Yakin menghapus member ini dari workspace?
         </x-slot>
 
         <x-slot name="footer">
             <x-jet-secondary-button wire:click="$toggle('confirmingTeamMemberRemoval')" wire:loading.attr="disabled">
-                Nevermind
+                Ga jadi
             </x-jet-secondary-button>
 
             <x-jet-danger-button class="ml-2" wire:click="removeTeamMember" wire:loading.attr="disabled">
-                Remove
+                Hapus
             </x-jet-danger-button>
         </x-slot>
     </x-jet-confirmation-modal>

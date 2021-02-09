@@ -4,6 +4,7 @@
 namespace App\Support\Services;
 
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use mysql_xdevapi\Exception;
 
@@ -34,7 +35,7 @@ class PistonEvaluator
                 $response['version'],
                 $response['output'],
                 $response['stdout'],
-                $response['stderr']
+                $response['stderr'],
             );
         }catch (\Exception $e){
             return "Compiler menemukan error: {$response['message']}";
@@ -56,7 +57,7 @@ class PistonEvaluator
             'version' => $version,
             'output' => $output,
             'stdout' => $stdout,
-            'stderr' => $stderr
+            'stderr' => $stderr,
         ])->render();
     }
 }
