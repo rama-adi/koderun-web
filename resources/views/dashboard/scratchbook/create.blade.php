@@ -12,7 +12,7 @@
         </div>
     </x-slot>
     <livewire:scratchbooks.create />
-    @push('scripts')
+    @push('head')
         <script type="module" src="{{asset('js/monaco/index.js')}}"></script>
     @endpush
 </x-app-layout>

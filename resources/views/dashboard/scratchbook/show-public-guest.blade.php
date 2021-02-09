@@ -4,7 +4,7 @@
 @endpush
 @section('content')
     <livewire:scratchbooks.show-public :scratchbook="$scratchbook" :team="$team"/>
-    @push('scripts')
+    @push('head')
         <script type="module" src="{{asset('js/monaco/index.js')}}"></script>
     @endpush
 @endsection
