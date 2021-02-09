@@ -16,7 +16,7 @@ class AddMoreInformationToTeamsTable extends Migration
         Schema::table('teams', function (Blueprint $table) {
             $table->string('username', 10)->unique();
             $table->boolean('verified')->default(false);
-            $table->string('description', 255)->nullable();
+            $table->string('description', 255)->default('');
         });
     }
 
