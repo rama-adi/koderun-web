@@ -34,15 +34,21 @@ class ScratchbookPolicy
      * @param \App\Models\Scratchbook $scratchbook
      * @return mixed
      */
-    public function view(?User $user, Scratchbook $scratchbook)
+    public function view(?User $user, ?Scratchbook $scratchbook)
     {
+
+
         if ($scratchbook->visibility === self::SCRATCHBOOK_PUBLIC) {
             return Response::allow();
         }
 
-        if (($scratchbook->team_id === $user->currentTeam->id) && $user->teamCan(ScratchbookPermissions::READ)) {
+
+        if (filled($user) &&
+            ($scratchbook->team_id === $user->currentTeam->id) &&
+            $user->teamCan(ScratchbookPermissions::READ)) {
             return Response::allow();
         }
+
 
         return Response::deny('Scratchbook tidak terbuka untuk publik!');
     }
