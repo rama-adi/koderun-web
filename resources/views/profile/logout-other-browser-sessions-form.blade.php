@@ -65,12 +65,12 @@
         <!-- Logout Other Devices Confirmation Modal -->
         <x-jet-dialog-modal wire:model="confirmingLogout">
             <x-slot name="title">
-                Logout Other Browser Sessions
+               Keluar dari sesi lain
             </x-slot>
 
             <x-slot name="content">
-                Please enter your password to confirm you would like to logout of your other browser sessions across all
-                of your devices.
+                Harap masukkan kata sandi Anda untuk mengonfirmasi bahwa Anda ingin keluar dari sesi browser lain di semua sesi
+                perangkat Anda.
 
                 <div class="mt-4" x-data="{}"
                      x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
@@ -85,7 +85,7 @@
 
             <x-slot name="footer">
                 <x-jet-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled">
-                    Nevermind
+                    Ga jadi
                 </x-jet-secondary-button>
 
                 <x-jet-button class="ml-2" wire:click="logoutOtherBrowserSessions" wire:loading.attr="disabled">
