@@ -111,7 +111,7 @@
                 </div>
                 <div>
                     <div wire:ignore>
-                        <textarea id="initialCode" style="display: none;">{!! $scratchbook->code !!}</textarea>
+                        <textarea readonly id="initialCode" style="display: none;">{!! $scratchbook->code !!}</textarea>
                         <wc-monaco-editor
                             id="codeeditor"
                             language="{{ scratch_lang($scratchbook->language)['monaco'] }}"

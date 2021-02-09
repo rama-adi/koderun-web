@@ -88,7 +88,7 @@
                     </div>
                 </div>
                 <div>
-                    <textarea id="initialCode" style="display: none;">{!! $scratchbook->code !!}</textarea>
+                    <textarea readonly id="initialCode" style="display: none;">{!! $scratchbook->code !!}</textarea>
                     <div wire:ignore>
                         <wc-monaco-editor
                             wire:model.defer="code"
