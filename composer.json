@@ -9,7 +9,9 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
+        "ext-json": "*",
         "bensampo/laravel-enum": "^3.2",
+        "binarytorch/larecipe": "^2.4",
         "blade-ui-kit/blade-heroicons": "^0.3.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -20,8 +22,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
-        "tonysm/turbo-laravel": "^0.1.2",
-      "ext-json": "*"
+        "tonysm/turbo-laravel": "^0.1.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
