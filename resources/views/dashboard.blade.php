@@ -43,7 +43,8 @@
                 <ul class="divide-y divide-gray-200">
                     @foreach(\App\Models\Scratchbook::currentTeam()->orderBy('created_at','desc')->limit(5)->get() as $scratchbook)
                         <li>
-                            <a href="{{route('scratchbook.show', ['team' => $scratchbook->team->username, 'slug' => $scratchbook->slug])}}" class="block hover:bg-gray-50">
+                            <a href="{{route('scratchbook.show', ['team' => $scratchbook->team->username, 'slug' => $scratchbook->slug])}}"
+                               class="block hover:bg-gray-50">
                                 <div class="flex items-center px-4 py-4 sm:px-6">
                                     <div class="min-w-0 flex-1 flex items-center">
                                         <div class="flex-shrink-0">
@@ -99,8 +100,67 @@
             <h2 class="text-lg leading-6 font-medium text-gray-900">
                 Scratchbook yang dibintangi
             </h2>
-            <!--<p class="mt-2 text-gray-400">Yah, tim mu belum menyimpan scratchbook apapun!</p> -->
-            <p class="mt-2 text-gray-400">Fitur ini coming soon!</p>
+            @if(count(Auth::user()->currentTeam->starred()->limit(1)->get()) > 0)
+                <div class="bg-white shadow overflow-hidden sm:rounded-md mt-4">
+                    <ul class="divide-y divide-gray-200">
+                        @foreach(Auth::user()->currentTeam->starred()->limit(5)->get() as $starred)
+                            <li>
+                                <a href="{{route('scratchbook.show', ['team' => $starred->team->username, 'slug' => $starred->slug])}}"
+                                   class="block hover:bg-gray-50">
+                                    <div class="flex items-center px-4 py-4 sm:px-6">
+                                        <div class="min-w-0 flex-1 flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <div
+                                                    class="h-12 w-12 rounded-full bg-blue-500 text-2xl flex items-center justify-center  text-white">
+                                                    <i class="{{ scratch_lang($starred->language)['icon'] }}"></i>
+                                                </div>
+                                            </div>
+                                            <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                                                <div>
+                                                    <p class="text-sm font-medium text-indigo-600 truncate">{{$starred->title}}</p>
+                                                    <p class="mt-2 flex items-center text-sm text-gray-500">
+                                                        <!-- Heroicon name: mail -->
+                                                        <x-heroicon-o-code
+                                                            class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"/>
+                                                        <span
+                                                            class="truncate">{{scratch_lang($starred->language)['display']}}</span>
+                                                    </p>
+                                                </div>
+                                                <div class="hidden md:block">
+                                                    <div>
+                                                        <p class="text-sm text-gray-900">
+                                                            Dibuat pada
+                                                            <time
+                                                                datetime="{{$starred->created_at->format('Y-m-d')}}">{{$starred->created_at->format('d-M-Y')}}</time>
+                                                        </p>
+                                                        <p class="mt-2 text-sm text-gray-500">
+                                                            Terakhir diedit
+                                                            <time
+                                                                datetime="{{$starred->updated_at->format('Y-m-d')}}">{{$starred->updated_at->format('d-M-Y')}}</time>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <!-- Heroicon name: chevron-right -->
+                                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd"
+                                                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                      clip-rule="evenodd"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+
+                    </ul>
+                </div>
+            @else
+                <p class="mt-2 text-gray-400">Yah, tim mu belum menyimpan scratchbook apapun!</p>
+            @endif
         </div>
     </div>
 

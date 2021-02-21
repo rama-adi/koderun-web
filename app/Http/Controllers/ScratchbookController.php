@@ -38,6 +38,7 @@ class ScratchbookController extends Controller
 
     public function show_public(Team $team, $slug)
     {
+
         $scratchbook = Scratchbook::where('team_id', $team->id)->where('slug', $slug)->first();
         Gate::authorize('view', $scratchbook);
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScratchbookStarsTable extends Migration
+class CreateScratchbookTeamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateScratchbookStarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('scratchbook_stars', function (Blueprint $table) {
+        Schema::create('scratchbook_team', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('team_id');
-            $table->unsignedBigInteger('scratchbook_id');
+            $table->unique(['team_id', 'scratchbook_id']);
+            $table->foreignId('team_id')->references('id')->on('teams')->cascadeOnDelete();
+            $table->foreignId('scratchbook_id')->references('id')->on('scratchbooks')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateScratchbookStarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scratchbook_stars');
+        Schema::dropIfExists('scratchbook_team');
     }
 }

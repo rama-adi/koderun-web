@@ -173,7 +173,7 @@
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div wire:ignore>
                         <iframe allow="encrypted-media" allowfullscreen frameborder="0"
                                 style="width: 100%; height: 70vh;" id="eval-output"></iframe>
                     </div>

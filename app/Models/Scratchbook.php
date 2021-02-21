@@ -19,4 +19,11 @@ class Scratchbook extends Model
     {
         return $query->where('team_id', \Auth::user()->currentTeam->id);
     }
+
+    public function stars()
+    {
+        return $this->belongsToMany(Team::class)->withTimestamps();
+    }
+
+
 }

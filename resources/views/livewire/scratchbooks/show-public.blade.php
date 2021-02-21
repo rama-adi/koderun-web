@@ -54,20 +54,14 @@
                     </li>
 
                     @can('star', $scratchbook)
-                        <li class="flex text-sm leading-none text-gray-900">
-                            <button
-                                class="flex items-center px-3 py-2 space-x-2 bg-gray-100 border border-gray-400 rounded-l-md hover:bg-gray-300 focus:bg-gray-300 focus:outline-none">
-                                <x-heroicon-o-star class="w-4 h-4 text-gray-700"/>
-                                <span class="font-semibold">Bintangi</span>
-                            </button>
-                            <a class="flex items-center -ml-px px-3 py-2 font-semibold border border-gray-400 rounded-r-md"
-                               href="#_">124</a>
+                        <li>
+                            <livewire:ui.star-scratchbook :scratchbook="$scratchbook"/>
                         </li>
                     @endcan
 
                     @can('clone', $scratchbook)
                         <li class="flex text-sm leading-none text-gray-900">
-                            <livewire:ui.clone-button :scratchbook="$scratchbook" />
+                            <livewire:ui.clone-button :scratchbook="$scratchbook"/>
                         </li>
                     @endcan
 
@@ -153,7 +147,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div wire:ignore>
                     <iframe allow="encrypted-media" allowfullscreen frameborder="0"
                             style="width: 100%; height: 70vh;" id="eval-output"></iframe>
                 </div>

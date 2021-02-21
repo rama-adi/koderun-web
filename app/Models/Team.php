@@ -52,4 +52,9 @@ class Team extends JetstreamTeam
     {
         return $this->hasMany(Scratchbook::class);
     }
+
+    public function starred()
+    {
+        return $this->belongsToMany(Scratchbook::class);
+    }
 }

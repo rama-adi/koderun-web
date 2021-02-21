@@ -137,7 +137,11 @@ class ScratchbookPolicy
      */
     public function star(User $user, Scratchbook $scratchbook)
     {
-        return false;
+        if(($scratchbook->team_id !== $user->current_team_id) && $user->teamCan(ScratchbookPermissions::FOREIGN_STAR)){
+            return Response::allow();
+        }
+
+        return Response::deny();
     }
 
     /**

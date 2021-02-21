@@ -29,7 +29,6 @@
         </div>
     @endif
 
-
     <livewire:scratchbooks.show-public :scratchbook="$scratchbook" :team="$team"/>
     @push('head')
         <script type="module" src="{{asset('js/monaco/index.js')}}"></script>
