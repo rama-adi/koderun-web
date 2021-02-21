@@ -22,7 +22,7 @@
         <div class="flex mb-8 lg:mt-6 lg:mb-0">
             <div class="inline-flex">
                 <a href="{{route('scratchbook.create')}}"
-                   class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-indigo-700 transition duration-150 ease-in-out bg-indigo-100 border border-transparent rounded-md hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300">
+                   class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-blue-700 transition duration-150 ease-in-out bg-blue-100 border border-transparent rounded-md hover:text-blue-600 hover:bg-blue-50 focus:outline-none focus:shadow-outline focus:border-blue-300">
                     Buat scratchbook
                 </a>
             </div>
@@ -55,7 +55,7 @@
                                         </div>
                                         <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                                             <div>
-                                                <p class="text-sm font-medium text-indigo-600 truncate">{{$scratchbook->title}}</p>
+                                                <p class="text-sm font-medium text-blue-600 truncate">{{$scratchbook->title}}</p>
                                                 <p class="mt-2 flex items-center text-sm text-gray-500">
                                                     <!-- Heroicon name: mail -->
                                                     <x-heroicon-o-code
@@ -95,6 +95,7 @@
                     @endforeach
                 </ul>
             </div>
+            <x-link-button class="mt-2 w-full" href="{{route('scratchbook.index')}}"> <x-heroicon-o-collection class="-ml-1 mr-3 h-5 w-5" /> Semua scratchbook</x-link-button>
         </div>
         <div class="mt-8">
             <h2 class="text-lg leading-6 font-medium text-gray-900">
@@ -117,7 +118,7 @@
                                             </div>
                                             <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                                                 <div>
-                                                    <p class="text-sm font-medium text-indigo-600 truncate">{{$starred->title}}</p>
+                                                    <p class="text-sm font-medium text-blue-600 truncate">{{$starred->title}}</p>
                                                     <p class="mt-2 flex items-center text-sm text-gray-500">
                                                         <!-- Heroicon name: mail -->
                                                         <x-heroicon-o-code
@@ -158,6 +159,7 @@
 
                     </ul>
                 </div>
+                <x-link-button class="mt-2 w-full" href="{{route('starred')}}"> <x-heroicon-o-star class="-ml-1 mr-3 h-5 w-5" /> Semua scratchbook yang dibintangi</x-link-button>
             @else
                 <p class="mt-2 text-gray-400">Yah, tim mu belum menyimpan scratchbook apapun!</p>
             @endif

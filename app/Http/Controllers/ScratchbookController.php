@@ -11,7 +11,12 @@ class ScratchbookController extends Controller
 {
     public function index(Request $request)
     {
+        return view('livewire.scratchbooks.index');
+    }
 
+    public function starred(Request $request)
+    {
+        return view('livewire.scratchbooks.starred');
     }
 
     public function create(Request $request)

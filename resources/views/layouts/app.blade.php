@@ -17,7 +17,7 @@
 <body>
 <div class="h-screen flex overflow-hidden bg-gray-50" x-data="{ sidebarOpen: false }"
      @keydown.window.escape="sidebarOpen = false">
-    <x-app-layouts.sidebar/>
+    @livewire('navigation-menu')
     <!-- Main column -->
 
     <div class="flex flex-col w-0 flex-1 overflow-hidden">

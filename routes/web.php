@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect(route('login'));
-    //return view('welcome');
+    return view('welcome');
 })->name('welcome');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function (){
@@ -27,10 +26,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     Route::prefix('dashboard')->group(function (){
 
         Route::prefix('scratchbooks')->group(function (){
+            Route::get('/', [ScratchbookController::class, 'index'])->name('scratchbook.index');
             Route::get('new', [ScratchbookController::class, 'create'])->name('scratchbook.create');
+            Route::get('starred', [ScratchbookController::class, 'starred'])->name('starred');
             Route::get('{scratchbook}/edit', [ScratchbookController::class, 'edit'])->name('scratchbook.edit');
             Route::get('{scratchbook}/raw', [ScratchbookController::class, 'raw'])->name('scratchbook.raw');
-
         });
 
     });
